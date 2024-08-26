@@ -1,0 +1,5 @@
+"/home/sulo/programming/C++/Lab2/huuhaa/puuhaa/testetse"
+huuhaa
+puuhaa
+testetse
+"huuhaa/puuhaa/testetse"

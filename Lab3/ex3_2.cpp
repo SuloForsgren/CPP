@@ -3,25 +3,26 @@
 using namespace std;
 
 class RunningAverage{
-    private:
-        deque<int> values;
-    public:
-        RunningAverage(int avg) {};
+private:
+    deque<int> values;
+    int max_size;
+public:
+    RunningAverage(int avg) : max_size(avg) {};
 
-        void add_value(int value) {
-            if (this->values.size() == 5) {
-                this->values.pop_back();
-            }
-            this->values.push_front(value);
+    void add_value(int value) {
+        if (values.size() == max_size) {
+            values.pop_back();
         }
+        values.push_front(value);
+    }
 
-        double get_average() {
-            int sum = 0;
-            for (auto value : this->values) {
-                sum+=value;
-            }
-            return static_cast<double>(sum)/this->values.size();
+    double get_average() {
+        int sum = 0;
+        for (auto value : values) {
+            sum+=value;
         }
+        return static_cast<double>(sum)/values.size();
+    }
 };
 
 
@@ -33,6 +34,7 @@ int main() {
         cin >> input;
 
         if (input == 0) {
+            cout << "Final average " << avg.get_average() << endl;
             break;
         }
         else {
@@ -40,5 +42,6 @@ int main() {
             cout << avg.get_average() << endl;
         }
     }
+    
     return 0;
 }

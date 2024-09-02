@@ -5,6 +5,7 @@
 #include <vector>
 #include <limits>
 #include <sstream>
+#include <algorithm>
 using namespace std;
 
 class House{
@@ -33,15 +34,62 @@ public:
         }
         return is;
     }
+
+    bool operator<(const House& other) const {
+        return (price / area) < (other.price / other.area);
+    }
 };
 
 int main() {
     vector<House> houses;
     
-    cout << "Enter house 1 information: ";
-    House house1;
-    cin >> house1;
-    houses.push_back(house1);
+    //House 1 Information
+    cout << "Enter house 1 information\n";
+    string address;
+    double area;
+    int price;
+
+    cout << "Enter address:";
+    cin.ignore();
+    getline(cin, address);
+    cout << "Enter area: ";
+    cin >> area;
+    cout << "Enter price: ";
+    cin >> price;
+    houses.emplace_back(address, area, price);
+
+    //House 2 Information
+    House house2;
+    cout << "Enter house 2 information\n";
+    cout << "Enter address: ";
+    cin.ignore();
+    getline(cin, address);
+    house2.setAddress(address);
+    cout << "Enter area: ";
+    cin >> area;
+    house2.setArea(area);
+    cout << "Enter price: ";
+    cin >> price;
+    house2.setPrice(price);
+    houses.push_back(house2);
+
+    //House 3 Information
+    House house3;
+    cout << "Enter house3 information\n";
+    cin >> house3;
+    houses.push_back(house3);
+
+    //House 4 and 5 Information
+    House house4, house5;
+    cout << "Enter house4 Information\n";
+    cin >> house4;
+    houses.push_back(house4);
+
+    cout << "Enter house5 Information\n";
+    cin >> house5;
+    houses.push_back(house5);
+
+    sort(houses.begin(), houses.end());
 
     for (auto& house : houses) {
         cout << house << endl;

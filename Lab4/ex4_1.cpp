@@ -50,7 +50,6 @@ int main() {
     int price;
 
     cout << "Enter address:";
-    cin.ignore();
     getline(cin, address);
     cout << "Enter area: ";
     cin >> area;
@@ -74,14 +73,13 @@ int main() {
     houses.push_back(house2);
 
     //House 3 Information
-    House house3;
-    cout << "Enter house3 information\n";
-    cin >> house3;
+    House house3("Leiritie3", 300, 3000);
     houses.push_back(house3);
 
     //House 4 and 5 Information
     House house4, house5;
     cout << "Enter house4 Information\n";
+    cin.ignore();
     cin >> house4;
     houses.push_back(house4);
 

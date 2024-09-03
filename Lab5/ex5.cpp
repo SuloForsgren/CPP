@@ -32,6 +32,10 @@ int RandGen_2::operator()() {
     return number;
 }
 
+void printMatching(int element) {
+    cout << element << "\n";
+}
+
 int main() {
     srand(time(NULL)); 
 
@@ -39,8 +43,8 @@ int main() {
     vector<int> vikingLotto(10);
     vector <int> euroJackpot(10);
     
-    RandGen_2 genLotto(1, 40);
-    RandGen_2 genVikingLotto(1, 48);
+    RandGen_2 genLotto(1, 10);
+    RandGen_2 genVikingLotto(1, 10);
     RandGen_2 genEurojackpot(1, 50);
 
     generate(lotto.begin(), lotto.end(), genLotto);
@@ -63,9 +67,7 @@ int main() {
     auto it = set_intersection(lotto.begin(), lotto.end(), vikingLotto.begin(), vikingLotto.end(), intersection.begin());
     intersection.resize(it - intersection.begin());
 
-    for (auto number : intersection) {
-        cout << number << " ";
-    }
+    for_each(intersection.begin(), intersection.end(), printMatching);
     cout << endl;
     
     return 0;

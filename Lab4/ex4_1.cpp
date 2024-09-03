@@ -70,10 +70,13 @@ int main() {
     cout << "Enter price: ";
     cin >> price;
     house2.setPrice(price);
+    cin.ignore();
     houses.push_back(house2);
 
     //House 3 Information
-    House house3("Leiritie3", 300, 3000);
+    House house3;
+    cout << "Enter information for house 3 (using input operator):" << endl;
+    cin >> house3;
     houses.push_back(house3);
 
     //House 4 and 5 Information

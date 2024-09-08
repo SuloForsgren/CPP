@@ -1,7 +1,8 @@
 #include <iostream>
+#include <ostream>
 #include <string>
-
 using namespace std;
+
 class Counter {
 public:
 	virtual void inc() = 0;
@@ -10,9 +11,83 @@ public:
 	virtual ~Counter() {};
 };
 
+class LimitedCounter : public Counter{
+public:
+    LimitedCounter(int value, int upperValue): value(value), upperValue(upperValue) {};
+
+    void inc() override{
+        if (value == upperValue){
+            //Do nothing
+        }
+        else {
+            ++value;
+        }
+    }
+
+    void dec() override{
+        if (value > 0) {
+            --value;
+        }
+    }
+
+    operator int() override{
+        return value;
+    }
+
+private:
+    int value;
+    int upperValue;
+};
+
+class OverflowCounter : public Counter{
+public:
+    OverflowCounter(int value, int upperValue): value(value), upperValue(upperValue) {};
+
+    void inc() override{
+        if (value == upperValue) {
+            value = 0;
+        }
+        else {
+            ++value;
+        }
+    }
+    void dec() override{
+        if (value == 0) {
+            value = upperValue;
+        }
+        else {
+            --value;
+        }
+    }
+
+    operator int() override{
+        return value;
+    }
+
+
+private:
+    int value;
+    int upperValue;
+};
 
 // you need to implement this function
-void UseCounter(Counter& ctr, int num);
+void UseCounter(Counter& ctr, int num) {
+    if (num >= 0) {
+        for (int i = 0; i < num; ++i) {
+            ctr.inc();
+        }
+    }
+    else {
+        for (int i = 0; i < -num; ++i) {
+            ctr.dec();
+        }
+    }
+}
+
+ostream& operator<<(ostream& os, Counter& ctr) {
+    os << int(ctr);
+    return os;
+}
 
 
 int main(int argc, char** argv) {

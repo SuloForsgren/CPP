@@ -79,9 +79,6 @@ int main() {
         if (again == "yes") {
             runAgain = true;
         }
-        else if (again == "no") {
-            runAgain = false;
-        }
         else {
             runAgain = false;
         }

@@ -1,10 +1,5 @@
 #include <iostream>
-#include <ostream>
-#include <istream>
 #include <string>
-#include <vector>
-#include <limits>
-#include <sstream>
 using namespace std;
 
 class Person {

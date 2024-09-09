@@ -14,10 +14,6 @@ public:
     virtual void interrogate() {
          //Does nothing really here..
     };
-
-    string getName() const{
-        return name;
-    }
 private:
     std::string name;
 };
@@ -36,7 +32,9 @@ public:
             cout << "My name is: " << alias << endl;
         }
         else {
-            cout << "My name is: " << getName() << "\nMy alias is: " << alias << endl;
+            cout << "My name is: ";
+            Person::identity();
+            cout << "My alias is: " << alias << endl;
         }
     }
 

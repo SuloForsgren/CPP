@@ -32,10 +32,11 @@ int UniqueRng::operator()() {
 
 void test_generator(UniqueRng &ur, int count) {
     try {
+        cout << "Start of generator:\n";
         for(int i = 0; i < count; i++) {
-            cout << ur() << " ";
+            cout << ur() << endl;
         }
-        cout << endl;
+        cout << "End of generator\n";
     }
     catch(const runtime_error& e) {
         cout << "exception " << e.what() << endl;

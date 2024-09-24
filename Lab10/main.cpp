@@ -10,8 +10,11 @@ using namespace std;
 
 class UniqueRng {
 public:
-    UniqueRng(const int min, const int max) : min(min), max(max) {}
+    UniqueRng(const int min, const int max) : min(min), max(max) {
+        srand(time(nullptr));
+    }
     int operator()();
+    void reset();
 private:
     vector<int> numbers;
     const int min, max;
@@ -19,7 +22,7 @@ private:
 
 int UniqueRng::operator()() {
     if (numbers.size() == (max - min + 1)) {
-        throw runtime_error("Unable to process\n");
+        throw runtime_error("Unable to produce unique random number.");
     }
     int number;
     do {
@@ -30,16 +33,24 @@ int UniqueRng::operator()() {
     return number;
 }
 
+void UniqueRng::reset() {
+    numbers.clear();
+}
+
 void test_generator(UniqueRng &ur, int count) {
+    ur.reset();
+    int index = 0;
     try {
         cout << "Start of generator:\n";
-        for(int i = 0; i < count; i++) {
+        while (index < count) {
             cout << ur() << endl;
+            index++;
         }
+            
         cout << "End of generator\n";
     }
     catch(const runtime_error& e) {
-        cout << "exception " << e.what() << endl;
+        cout << "exception " << e.what() << " Tried to generate " << count << " random numbers. Got only " << index << endl;
     }
 
 }
